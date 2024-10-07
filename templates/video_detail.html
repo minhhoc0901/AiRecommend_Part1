@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ video.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>YouTube Video Recommender</h1>
+    </header>
+    
+    <main>
+        <div style="display: flex;">
+            <div style="flex: 70%; padding-right: 20px;">
+                <div class="video-player">
+                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/{{ video.videoId }}" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h2>{{ video.title }}</h2>
+                <p>{{ video.description }}</p>
+            </div>
+            <div style="flex: 30%;">
+                <div class="recommended-videos">
+                    <h2>Video gợi ý</h2>
+                    <ul>
+                        {% for recommended_video in recommended_videos %}
+                            <li>
+                                <h3>{{ recommended_video.title }}</h3>
+                                <a href="/video/{{ recommended_video.videoId }}">Xem</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2024 Video Recommender</p>
+    </footer>
+</body>
+</html>

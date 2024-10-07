@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>YouTube Video Recommender</h1>
+        <form method="POST" action="/">
+            <input type="text" name="query" placeholder="Tìm kiếm video...">
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </header>
+    
+    <main>
+        <div class="video-list">
+            <h2>Video tìm kiếm</h2>
+            <ul>
+                {% for video in videos %}
+                    <li>
+                        <h3>{{ video.title }}</h3>
+                        <p>{{ video.description }}</p>
+                        <img src="{{ video.thumbnail }}" alt="Thumbnail" width="100%">
+                        <a href="/video/{{ video.videoId }}">Xem</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2024 Video Recommender</p>
+    </footer>
+</body>
+</html>
+ <!-- 
